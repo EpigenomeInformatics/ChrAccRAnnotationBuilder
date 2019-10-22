@@ -1,0 +1,30 @@
+Package: ChrAccRAnnotationBuilder
+Title: Building annotation packages for ChrAccR
+Description: A factory package that builds annotation packages to be used with ChrAccR
+Authors@R: person("Fabian", "Mueller", email = "muellerf@stanford.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-5809-2321"))
+Date: 2019-10-23
+Suggests:
+    chromVAR,
+    motifmatchr,
+    chromVARmotifs,
+    Biostrings,
+    matrixStats,
+    TFBSTools,
+    BSgenome.Hsapiens.NCBI.GRCh38,
+    BSgenome.Hsapiens.UCSC.hg38,
+    BSgenome.Hsapiens.1000genomes.hs37d5,
+    BSgenome.Hsapiens.UCSC.hg19,
+    BSgenome.Mmusculus.UCSC.mm10,
+    BSgenome.Mmusculus.UCSC.mm9,
+    JASPAR2018
+Imports:
+    S4Vectors,
+    IRanges,
+    GenomeInfoDb,
+    GenomicRanges,
+    muLogR,
+    muRtools,
+    ChrAccR
+License: GPL-2
+Version: 0.0.1
+Encoding: UTF-8
