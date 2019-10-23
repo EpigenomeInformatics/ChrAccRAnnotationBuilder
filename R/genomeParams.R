@@ -10,7 +10,8 @@
 		promoterRange = c(up=1500, down=500),
 		tfMotifs = list(
 			"jaspar" = list(
-				"parseFun" = ""
+				"parseFun" = "prepareMotifmatchr",
+				"motifs" = "jaspar" 
 			)
 		),
 		defaultNames = list(

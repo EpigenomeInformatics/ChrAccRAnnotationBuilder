@@ -40,7 +40,8 @@ createPackageScaffold <- function(annoName, dest, genomeParams){
 		file.path(pkgDir, "inst", "extdata", "loadAnnotations.R"),
 		replacements=c(
 			PKG_NAME = pkgName,
-			DEFAULT_GENE_ANNO = genomeParams[["defaultNames"]][["geneAnno"]]
+			DEFAULT_GENE_ANNO = genomeParams[["defaultNames"]][["geneAnno"]],
+			DEFAULT_MOTIF_ANNO = genomeParams[["defaultNames"]][["tfMotifs"]]
 		)
 	)
 
@@ -62,6 +63,14 @@ createPackage <- function(annoName, outDir="."){
 		logger.completed()
 	} else {
 		logger.error("Missing information in how to create gene annotation")
+	}
+
+	if (is.element("tfMotifs", names(pps))){
+		logger.start("Preparing TF motif annotations")
+			annotateMotifs(pps, dataDir)
+		logger.completed()
+	} else {
+		logger.error("Missing information in how to create TF motif annotation")
 	}	
 
 	logger.info(c("Created annotation package for genome", genome, "@", pkgDir))

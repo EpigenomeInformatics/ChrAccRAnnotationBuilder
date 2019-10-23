@@ -29,6 +29,7 @@ Collate:
     'utils.R'
     'genomeParams.R'
     'gene_annotation.R'
+    'motif_annotation.R'
     'buildAnnotation.R'
 License: GPL-2
 Version: 0.0.1
