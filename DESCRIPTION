@@ -4,7 +4,6 @@ Description: A factory package that builds annotation packages to be used with C
 Authors@R: person("Fabian", "Mueller", email = "muellerf@stanford.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-5809-2321"))
 Date: 2019-10-23
 Suggests:
-    chromVAR,
     motifmatchr,
     chromVARmotifs,
     Biostrings,
@@ -24,7 +23,13 @@ Imports:
     GenomicRanges,
     muLogR,
     muRtools,
-    ChrAccR
+    ChrAccR,
+    devtools
+Collate:
+    'utils.R'
+    'genomeParams.R'
+    'gene_annotation.R'
+    'buildAnnotation.R'
 License: GPL-2
 Version: 0.0.1
 Encoding: UTF-8
