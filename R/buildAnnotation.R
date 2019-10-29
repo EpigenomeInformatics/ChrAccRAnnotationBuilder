@@ -48,9 +48,26 @@ createPackageScaffold <- function(annoName, dest, genomeParams){
 	return(pkgDir)
 }
 
-createPackage <- function(annoName, outDir="."){
+createPackage <- function(annoName, outDir=".", cmdr=NULL){
 	if (!is.element(annoName, names(.genomeParams))){
 		logger.error(c("Could not build package because no parameter settings are specified for genome", genome))
+	}
+	if (!is.null(cmdrObj)){
+		require(muPipeR)
+		if (is.character(cmdr) && cmdr=="sherlock_sfgf"){
+			cmdrObj <- CommandRslurm(
+				logDir=file.path(outDir, "slurmLogs"),
+				req=c("--partition"="sfgf", "--mem"="16G", "--time"="03:00:00", "--cpus-per-task"="1"),
+				user="muellerf"
+			)
+		} else {
+			cmdrObj <- cmdr
+		}
+		if (!inherits(cmdrObj,"CommandR")){
+			logger.error("Invalid CommandR object")
+		}
+	} else {
+		cmdrObj <- NULL
 	}
 	pps <- validateGenomeParams(.genomeParams[[annoName]])
 	print(pps)
@@ -67,7 +84,7 @@ createPackage <- function(annoName, outDir="."){
 
 	if (is.element("tfMotifs", names(pps))){
 		logger.start("Preparing TF motif annotations")
-			annotateMotifs(pps, dataDir)
+			annotateMotifs(pps, dataDir, cmdrObj=cmdrObj)
 		logger.completed()
 	} else {
 		logger.error("Missing information in how to create TF motif annotation")
