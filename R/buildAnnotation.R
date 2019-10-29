@@ -50,9 +50,9 @@ createPackageScaffold <- function(annoName, dest, genomeParams){
 
 createPackage <- function(annoName, outDir=".", cmdr=NULL){
 	if (!is.element(annoName, names(.genomeParams))){
-		logger.error(c("Could not build package because no parameter settings are specified for genome", genome))
+		logger.error(c("Could not build package because no parameter settings are specified for genome annotation:", annoName))
 	}
-	if (!is.null(cmdrObj)){
+	if (!is.null(cmdr)){
 		require(muPipeR)
 		if (is.character(cmdr) && cmdr=="sherlock_sfgf"){
 			cmdrObj <- CommandRslurm(
@@ -93,3 +93,5 @@ createPackage <- function(annoName, outDir=".", cmdr=NULL){
 	logger.info(c("Created annotation package for genome", genome, "@", pkgDir))
 	return(pkgDir)
 }
+# library(ChrAccRAnnotationBuilder)
+# createPackage("Hg38", outDir="/scratch/users/muellerf/ChrAccRAnno", cmdr="sherlock_sfgf")
