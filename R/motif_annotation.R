@@ -29,7 +29,7 @@ annotateMotifs <- function(genomeParams, dataDir, cmdrObj=NULL){
 			go <- mmObj[["genome"]]
 			motifGrl <- ChrAccR::getMotifOccurrences(motifNames=NULL, motifDb=x[["motifs"]], genome=genomeParams[["genome"]])
 			
-			logger.status("Preparing motf window k-mer frequencies ...")
+			logger.status("Preparing motif window k-mer frequencies ...")
 			motifNames <- names(motifGrl)
 			if (is.null(cmdrObj)){
 				kmerFreqML <- lapply(motifNames, FUN=function(mn){
@@ -39,18 +39,22 @@ annotateMotifs <- function(genomeParams, dataDir, cmdrObj=NULL){
 					return(kmerFreqM)
 				})
 			} else {
-				envList <- list(
-					computeWindowKmerFreqM=computeWindowKmerFreqM,
-					genomeObj=go
-				)
-				kmerFreqML <- lapplyExec(
-					cmdrObj,
-					motifGrl,
-					function(x){computeWindowKmerFreqM(x, genomeObj)},
-					env=envList,
-					Rexec="Rscript",
-					name=paste0("kmers_", x[["motifs"]])
-				)
+				logger.start("Parallel computation")
+					envList <- list(
+						computeWindowKmerFreqM=computeWindowKmerFreqM,
+						motifGrl=motifGrl,
+						genomeObj=go
+					)
+					f <- function(x){computeWindowKmerFreqM(motifGrl[[x]], genomeObj)}
+					kmerFreqML <- lapplyExec(
+						cmdrObj,
+						lapply(seq_along(motifGrl), identity),
+						f,
+						env=envList,
+						Rexec="Rscript",
+						name=paste0("kmers_", x[["motifs"]])
+					)
+				logger.completed()
 			}
 			names(kmerFreqML) <- motifNames
 
