@@ -24,11 +24,12 @@ annotateMotifs <- function(genomeParams, dataDir, cmdrObj=NULL){
 			motifWindowKmerFreq=NULL
 		)
 		if (x[["parseFun"]] == "prepareMotifmatchr"){
+			logger.status("Preparing motf occurrences ...")
 			mmObj <- ChrAccR::prepareMotifmatchr(genomeParams[["genome"]], x[["motifs"]])
 			go <- mmObj[["genome"]]
 			motifGrl <- ChrAccR::getMotifOccurrences(motifNames=NULL, motifDb=x[["motifs"]], genome=genomeParams[["genome"]])
 			
-			# TODO: motif window for footprinting + kmer frequency bias
+			logger.status("Preparing motf window k-mer frequencies ...")
 			motifNames <- names(motifGrl)
 			if (is.null(cmdrObj)){
 				kmerFreqML <- lapply(motifNames, FUN=function(mn){
@@ -45,7 +46,7 @@ annotateMotifs <- function(genomeParams, dataDir, cmdrObj=NULL){
 				kmerFreqML <- lapplyExec(
 					cmdrObj,
 					motifGrl,
-					function(x){computeWindowKmerFreqM(x, go)},
+					function(x){computeWindowKmerFreqM(x, genomeObj)},
 					env=envList,
 					Rexec="Rscript",
 					name=paste0("kmers_", x[["motifs"]])
