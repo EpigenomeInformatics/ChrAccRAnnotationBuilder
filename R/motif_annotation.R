@@ -69,9 +69,8 @@ annotateMotifs <- function(genomeParams, dataDir, cmdrObj=NULL){
 	names(motifAnnoL) <- names(genomeParams[["tfMotifs"]])
 
 	for (anno in names(motifAnnoL)){
-		x <- motifAnnoL[[anno]]
 		for (type in c("motifs", "motifOccGrl", "motifWindowKmerFreq")){
-			rdsFn <- file.path(dataDir, paste0("motif_annotation_", anno, ".rds"))
+			rdsFn <- file.path(dataDir, paste0("motif_annotation_", anno, "_", type, ".rds"))
 			saveRDS(motifAnnoL[[anno]][[type]], rdsFn)
 		}
 	}

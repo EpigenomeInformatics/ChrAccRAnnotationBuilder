@@ -22,7 +22,6 @@ annotateGenes <- function(genomeParams, dataDir){
 	names(geneAnnoL) <- names(genomeParams[["geneAnno"]])
 
 	for (anno in names(geneAnnoL)){
-		x <- geneAnnoL[[anno]]
 		for (type in c("geneGr", "tssGr", "promoterGr")){
 			rdsFn <- file.path(dataDir, paste0("gene_annotation_", anno, "_", type, ".rds"))
 			saveRDS(geneAnnoL[[anno]][[type]], rdsFn)
