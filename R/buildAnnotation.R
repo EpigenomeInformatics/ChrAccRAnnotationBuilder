@@ -37,7 +37,7 @@ createPackageScaffold <- function(annoName, dest, genomeParams){
 	# copy source code files
 	file_copy_replace(
 		system.file("extdata", "loadAnnotations.R", package="ChrAccRAnnotationBuilder"),
-		file.path(pkgDir, "inst", "extdata", "loadAnnotations.R"),
+		file.path(pkgDir, "R", "loadAnnotations.R"),
 		replacements=c(
 			PKG_NAME = pkgName,
 			DEFAULT_GENE_ANNO = genomeParams[["defaultNames"]][["geneAnno"]],
