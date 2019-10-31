@@ -74,6 +74,9 @@ createPackage <- function(annoName, outDir=".", cmdr=NULL){
 	pkgDir <- createPackageScaffold(annoName, outDir, pps)
 	dataDir <- file.path(pkgDir, "inst", "extdata")
 
+	# package metadata
+	saveRDS(pps, file.path(dataDir, "genomeParams.rds"))
+
 	if (is.element("geneAnno", names(pps))){
 		logger.start("Preparing gene annotations")
 			annotateGenes(pps, dataDir)

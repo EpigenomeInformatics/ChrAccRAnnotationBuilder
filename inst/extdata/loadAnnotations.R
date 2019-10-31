@@ -1,5 +1,15 @@
 .PKG_NAME <- "`${PKG_NAME}`"
 
+#' getGenomeParams
+#' 
+#' Retrieve the parameters used for building this annotation package
+#' @return list storing the parameters used for building this annotation package
+#' @export 
+getGenomeParams <- function(){
+	res <- readRDS(system.file("extdata", paste0("genomeParams", ".rds"), package=.PKG_NAME))
+	return(res)
+}
+
 #' getGeneAnnotation
 #' 
 #' Load the gene annotation stored in this package
