@@ -5,6 +5,11 @@
 			"gencode" = list(
 				"parseFun" = "getAnnotGrl.gencode",
 				"version" = "gencode.v27"
+			),
+			"gencode_coding" = list(
+				"parseFun" = "getAnnotGrl.gencode",
+				"version" = "gencode.v27",
+				"includedTypes" = c("protein_coding")
 			)
 		),
 		promoterRange = c(up=1500, down=500),
@@ -12,6 +17,10 @@
 			"jaspar" = list(
 				"parseFun" = "prepareMotifmatchr",
 				"motifs" = "jaspar" 
+			),
+			"jaspar_vert" = list(
+				"parseFun" = "prepareMotifmatchr",
+				"motifs" = "jaspar_vert" 
 			)
 		),
 		defaultNames = list(

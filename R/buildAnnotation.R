@@ -90,7 +90,7 @@ createPackage <- function(annoName, outDir=".", cmdr=NULL){
 		logger.error("Missing information in how to create TF motif annotation")
 	}	
 
-	logger.info(c("Created annotation package for genome", genome, "@", pkgDir))
+	logger.info(c("Created annotation package for genome", annoName, "@", pkgDir))
 	return(pkgDir)
 }
 # library(ChrAccRAnnotationBuilder)
