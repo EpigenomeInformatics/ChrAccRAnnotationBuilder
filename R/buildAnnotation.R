@@ -57,7 +57,7 @@ createPackage <- function(annoName, outDir=".", cmdr=NULL){
 		if (is.character(cmdr) && cmdr=="sherlock_sfgf"){
 			cmdrObj <- CommandRslurm(
 				logDir=file.path(outDir, "slurmLogs"),
-				req=c("--partition"="sfgf", "--mem"="32G", "--time"="06:00:00", "--cpus-per-task"="1"), #todo make this smaller
+				req=c("--partition"="sfgf", "--mem"="32G", "--time"="08:00:00", "--cpus-per-task"="1"), #todo make this smaller
 				user="muellerf"
 			)
 		} else {
