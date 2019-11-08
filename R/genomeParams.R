@@ -27,6 +27,35 @@
 			geneAnno = "gencode",
 			tfMotifs = "jaspar"
 		)
+	),
+	"Mm10"=list(
+		genome = "mm10",
+		geneAnno = list(
+			"gencode" = list(
+				"parseFun" = "getAnnotGrl.gencode",
+				"version" = "gencode.vM16"
+			),
+			"gencode_coding" = list(
+				"parseFun" = "getAnnotGrl.gencode",
+				"version" = "gencode.vM16",
+				"includedTypes" = c("protein_coding")
+			)
+		),
+		promoterRange = c(up=1500, down=500),
+		tfMotifs = list(
+			"jaspar" = list(
+				"parseFun" = "prepareMotifmatchr",
+				"motifs" = "jaspar" 
+			),
+			"jaspar_vert" = list(
+				"parseFun" = "prepareMotifmatchr",
+				"motifs" = "jaspar_vert" 
+			)
+		),
+		defaultNames = list(
+			geneAnno = "gencode",
+			tfMotifs = "jaspar"
+		)
 	)
 )
 

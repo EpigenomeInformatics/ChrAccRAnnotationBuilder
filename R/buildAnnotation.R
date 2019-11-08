@@ -49,6 +49,7 @@ createPackageScaffold <- function(annoName, dest, genomeParams){
 }
 
 createPackage <- function(annoName, outDir=".", cmdr=NULL){
+	annoName <- gsub("^([[:alnum:]])","\\U\\1", annoName, perl=TRUE) # make first letter upper case
 	if (!is.element(annoName, names(.genomeParams))){
 		logger.error(c("Could not build package because no parameter settings are specified for genome annotation:", annoName))
 	}
@@ -69,6 +70,7 @@ createPackage <- function(annoName, outDir=".", cmdr=NULL){
 	} else {
 		cmdrObj <- NULL
 	}
+
 	pps <- validateGenomeParams(.genomeParams[[annoName]])
 	print(pps)
 	pkgDir <- createPackageScaffold(annoName, outDir, pps)
