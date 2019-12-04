@@ -21,6 +21,10 @@
 			"jaspar_vert" = list(
 				"parseFun" = "prepareMotifmatchr",
 				"motifs" = "jaspar_vert" 
+			),
+			"cisbp" = list(
+				"parseFun" = "prepareMotifmatchr",
+				"motifs" = "cisbp" 
 			)
 		),
 		defaultNames = list(
