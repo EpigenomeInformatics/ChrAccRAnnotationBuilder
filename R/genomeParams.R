@@ -14,6 +14,10 @@
 		),
 		promoterRange = c(up=1500, down=500),
 		tfMotifs = list(
+			"cisbp" = list(
+				"parseFun" = "prepareMotifmatchr",
+				"motifs" = "cisbp" 
+			),
 			"jaspar" = list(
 				"parseFun" = "prepareMotifmatchr",
 				"motifs" = "jaspar" 
@@ -21,10 +25,6 @@
 			"jaspar_vert" = list(
 				"parseFun" = "prepareMotifmatchr",
 				"motifs" = "jaspar_vert" 
-			),
-			"cisbp" = list(
-				"parseFun" = "prepareMotifmatchr",
-				"motifs" = "cisbp" 
 			)
 		),
 		defaultNames = list(
