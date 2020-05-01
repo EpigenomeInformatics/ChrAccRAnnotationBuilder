@@ -25,7 +25,12 @@
 			"jaspar_vert" = list(
 				"parseFun" = "prepareMotifmatchr",
 				"motifs" = "jaspar_vert" 
-			)
+			)#,
+			# "tfClusters_altius" = list(
+			# 	"parseFun" = "prepareTfClusters_altius",
+			# 	"motifs" = "tfClusters_altius",
+			# 	"rdsFn" = "/oak/stanford/groups/wjg/muellerf/resources/TFmotifs/AltiusMotifModelClusters/v1.0/tfMotifClusters_hg38.rds"
+			# )
 		),
 		defaultNames = list(
 			geneAnno = "gencode",

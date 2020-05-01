@@ -24,11 +24,21 @@ annotateMotifs <- function(genomeParams, dataDir, cmdrObj=NULL){
 				motifOccGrl=NULL,
 				motifWindowKmerFreq=NULL
 			)
-			if (x[["parseFun"]] == "prepareMotifmatchr"){
-				logger.status("Preparing motf occurrences ...")
-				mmObj <- ChrAccR::prepareMotifmatchr(genomeParams[["genome"]], x[["motifs"]])
-				go <- mmObj[["genome"]]
-				motifGrl <- ChrAccR::getMotifOccurrences(motifNames=NULL, motifDb=x[["motifs"]], genome=genomeParams[["genome"]])
+			if (is.element(x[["parseFun"]], c("prepareMotifmatchr", "prepareTfClusters_altius"))){
+				if (x[["parseFun"]] == "prepareMotifmatchr"){
+					logger.status("Preparing motif occurrences ...")
+					mmObj <- ChrAccR::prepareMotifmatchr(genomeParams[["genome"]], x[["motifs"]])
+					go <- mmObj[["genome"]]
+					motifGrl <- ChrAccR::getMotifOccurrences(motifNames=NULL, motifDb=x[["motifs"]], genome=genomeParams[["genome"]])
+				} else if (x[["parseFun"]] == "prepareTfClusters_altius"){
+					mobj <- readRDS(x[["rdsFn"]])
+					if (class(mobj) != "TfMotifClusters") logger.error("Invalid TfMotifClusters object")
+					motifGrl <- mobj$clusterOcc
+					mobj$clusterOcc <- NULL
+					mmObj <- mobj
+					go <- getGenomeObject(genomeParams[["genome"]])
+				}
+				
 				
 				logger.status("Preparing motif window k-mer frequencies ...")
 				motifNames <- names(motifGrl)
